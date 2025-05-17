@@ -21,7 +21,7 @@ export class Receipe {
   instructions: string;
 
   @Column()
-  locale: string; // "en", "pt", etc.
+  locale: string;
 
   @CreateDateColumn()
   createdAt: Date;
