@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Body } from '@nestjs/common';
-import { CreateRecipeDto } from 'src/application/dtos/create-recipe.dto';
-import { CreateRecipeUseCase } from 'src/application/usecases/create-recipe.usecase';
+import { CreateRecipeUseCase } from '../../application/usecases/create-recipe.usecase';
+import { CreateRecipeDto } from '../../application/dtos/create-recipe.dto';
 
 @Controller('recipes')
 export class RecipeController {

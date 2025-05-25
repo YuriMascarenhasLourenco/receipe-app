@@ -1,4 +1,4 @@
-import { RecipeDto } from 'src/application/dtos/recipe.dto';
+import { RecipeDto } from '../../application/dtos/recipe.dto';
 
 // domain/services/ai-recipe-generator.interface.ts
 export interface IAIRecipeGenerator {

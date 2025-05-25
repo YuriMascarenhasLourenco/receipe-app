@@ -9,6 +9,13 @@ export class Recipe {
     public readonly id?: number,
   ) {}
 
+  updateTitle(newTitle: string) {
+    if (!newTitle || newTitle.length < 3) {
+      throw new Error('Title must be at least 3 characters.');
+    }
+    (this as any).title = newTitle;
+  }
+
   isInternational(): boolean {
     return this.locale !== 'en';
   }

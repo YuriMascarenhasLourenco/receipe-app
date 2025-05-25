@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Injectable } from '@nestjs/common';
-import { IAIRecipeGenerator } from 'src/domain/services/ai-recipe.interface';
-import { RecipeDto } from 'src/application/dtos/recipe.dto';
+import { IAIRecipeGenerator } from '../../domain/services/ai-recipe.interface';
+import { RecipeDto } from '../../application/dtos/recipe.dto';
 
 @Injectable()
 export class HuggingFaceRecipeGenerator implements IAIRecipeGenerator {

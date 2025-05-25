@@ -1,9 +1,10 @@
-import { IRecipeRepository } from 'src/domain/repository/recipe.repository.interface';
-import { IAIRecipeGenerator } from 'src/domain/services/ai-recipe.interface';
 import { CreateRecipeDto } from '../dtos/create-recipe.dto';
-import { Recipe } from 'src/domain/entities/recipe.repository';
+
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { IRecipeRepository } from '../../domain/repository/recipe.repository';
+import { IAIRecipeGenerator } from '../../domain/services/ai-recipe.interface';
+import { Recipe } from '../../domain/enitities/recipe.entity';
 
 export class CreateRecipeUseCase {
   constructor(
