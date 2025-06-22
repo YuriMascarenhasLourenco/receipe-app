@@ -1,4 +1,4 @@
-import { IsArray, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsDate, IsNumber, IsString } from 'class-validator';
 import { CreateRecipeDto } from './create-recipe.dto';
 export class RecipeDto extends CreateRecipeDto {
   @IsNumber()
@@ -7,9 +7,21 @@ export class RecipeDto extends CreateRecipeDto {
   ingredients: string[];
   @IsString()
   instructions: string;
-  constructor(title: string, ingredients: string[], instructions: string) {
+  @IsDate()
+  createdAt: Date;
+  @IsDate()
+  updatedAt?: Date;
+  constructor(
+    title: string,
+    ingredients: string[],
+    instructions: string,
+    createdAt: Date,
+    updatedAt?: Date,
+  ) {
     super(title);
     this.ingredients = ingredients;
     this.instructions = instructions;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }

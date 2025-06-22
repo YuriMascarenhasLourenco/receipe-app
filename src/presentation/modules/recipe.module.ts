@@ -8,4 +8,4 @@ import { Recipe } from 'src/infrastructure/database/typeorm/recipe.orm-entity';
   providers: [],
   exports: [],
 })
-export class UserModule {}
+export class RecipeModule {}
