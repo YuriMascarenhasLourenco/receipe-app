@@ -5,10 +5,10 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { User } from './user.orm-entity';
+import { UserORMEntity } from './user.orm-entity';
 
 @Entity()
-export class Recipe {
+export class RecipeORMEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -27,7 +27,7 @@ export class Recipe {
   @Column({ type: 'timestamp', nullable: true })
   updatedAt?: Date;
 
-  @ManyToOne(() => User, (item) => item.recipes)
+  @ManyToOne(() => UserORMEntity, (item) => item.recipes)
   @JoinColumn()
-  user: User;
+  user: UserORMEntity;
 }

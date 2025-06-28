@@ -4,7 +4,7 @@ export class RecipeDto extends CreateRecipeDto {
   @IsNumber()
   recipeId: number;
   @IsArray()
-  ingredients: string[];
+  ingredients: string;
   @IsString()
   instructions: string;
   @IsDate()
@@ -12,8 +12,9 @@ export class RecipeDto extends CreateRecipeDto {
   @IsDate()
   updatedAt?: Date;
   constructor(
+    recipeId: number,
     title: string,
-    ingredients: string[],
+    ingredients: string,
     instructions: string,
     createdAt: Date,
     updatedAt?: Date,

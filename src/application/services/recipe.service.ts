@@ -10,6 +10,7 @@ export class RecipeService {
   async createRecipe(recipeDto: RecipeDto): Promise<Recipe> {
     const now = new Date();
     const recipe = new Recipe(
+      recipeDto.recipeId,
       recipeDto.title,
       recipeDto.ingredients,
       recipeDto.instructions,

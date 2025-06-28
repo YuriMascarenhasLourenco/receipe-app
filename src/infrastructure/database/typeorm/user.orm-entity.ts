@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Recipe } from './recipe.orm-entity';
+import { RecipeORMEntity } from './recipe.orm-entity';
 
 @Entity()
-export class User {
+export class UserORMEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
@@ -15,6 +15,6 @@ export class User {
   createdAt: Date;
   @Column({ type: 'timestamp', nullable: true })
   updatedAt: Date;
-  @OneToMany(() => Recipe, (recipe) => recipe.user)
-  recipes: Recipe[];
+  @OneToMany(() => RecipeORMEntity, (recipe) => recipe.user)
+  recipes: RecipeORMEntity[];
 }

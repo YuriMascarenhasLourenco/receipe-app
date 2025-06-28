@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Recipe } from './recipe.orm-entity';
-import { User } from './user.orm-entity';
+import { RecipeORMEntity } from './recipe.orm-entity';
+import { UserORMEntity } from './user.orm-entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
@@ -17,7 +17,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         password: config.get<string>('DB_PASSWORD'),
         database: config.get<string>('DB_NAME'),
         synchronize: true,
-        entities: [Recipe, User], // adicione suas entidades aqui
+        entities: [RecipeORMEntity, UserORMEntity], // adicione suas entidades aqui
       }),
     }),
   ],

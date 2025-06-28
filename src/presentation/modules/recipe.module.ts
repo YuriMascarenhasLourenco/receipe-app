@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Recipe } from 'src/infrastructure/database/typeorm/recipe.orm-entity';
+import { RecipeORMEntity } from 'src/infrastructure/database/typeorm/recipe.orm-entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Recipe])],
+  imports: [TypeOrmModule.forFeature([RecipeORMEntity])],
   controllers: [],
   providers: [],
   exports: [],
