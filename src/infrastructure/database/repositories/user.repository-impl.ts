@@ -14,8 +14,10 @@ export class UserRepositoryImpl implements UserRepository {
     @InjectRepository(UserORMEntity)
     private readonly ormRepo: Repository<UserORMEntity>,
   ) {}
-  async create(user: CreateUserDto): Promise<UserORMEntity> {
-    return this.ormRepo.save(user);
+  async create(user: CreateUserDto): Promise<UserDto> {
+    const userOrmEntity = UserMapper.fromcreateDtoToOrm(user);
+    const savedUser = await this.ormRepo.save(userOrmEntity);
+    return UserMapper.toDto(savedUser); // Sempre converta para DTO antes de retornar
   }
   async getMe(id: number): Promise<UserDto | null> {
     const userDetails = await this.ormRepo.findOne({ where: { id } });

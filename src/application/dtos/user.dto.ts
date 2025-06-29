@@ -16,5 +16,6 @@ export class UserDto extends CreateUserDto {
     recipes?: RecipeDto[],
   ) {
     super(username, password, email, createdAt, updatedAt, recipes);
+    this.id = id;
   }
 }
