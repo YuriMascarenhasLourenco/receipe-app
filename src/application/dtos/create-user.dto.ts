@@ -12,7 +12,7 @@ export class CreateUserDto {
   createdAt?: Date;
   @IsDate()
   updatedAt?: Date;
-  recipes: RecipeDto[];
+  recipes?: RecipeDto[];
 
   constructor(
     username: string,

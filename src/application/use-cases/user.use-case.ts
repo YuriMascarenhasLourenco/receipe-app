@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { UserDto } from '../dtos/user.dto';
-
-Injectable();
+import { CreateUserDto } from '../dtos/create-user.dto';
+import { Injectable } from '@nestjs/common';
+@Injectable()
 export class UserUseCase {
   // This class can be used to implement user-related use cases
   // For example, user registration, login, profile management, etc.
@@ -11,9 +11,12 @@ export class UserUseCase {
     // Replace 'any' with the actual user service type
   }
 
-  async registerUser(userData: any): Promise<any> {
-    // Implement user registration logic here
-    return { message: 'User registered successfully', userData };
+  async registerUser(userData: CreateUserDto): Promise<UserDto | null> {
+    const savedUser = await this.userService.createUser(userData);
+    if (!savedUser) {
+      throw new Error('User registration failed');
+    }
+    return savedUser;
   }
 
   async loginUser(credentials: any): Promise<any> {

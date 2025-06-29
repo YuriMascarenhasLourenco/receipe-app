@@ -3,6 +3,7 @@ import { User } from 'src/domain/entities/user.entity';
 import { UserRepository } from 'src/domain/repository/user.repository';
 import { UserMapper } from 'src/infrastructure/mappers/user.mapper';
 import { UserDto } from '../dtos/user.dto';
+import { CreateUserDto } from '../dtos/create-user.dto';
 
 @Injectable()
 export class UserService {
@@ -24,8 +25,8 @@ export class UserService {
     }
     await this.userRepo.delete(userId);
   }
-  async createUser(userInfo: User): Promise<UserDto | null> {
-    const createUserDto = UserMapper.toOrmEntity(userInfo);
+  async createUser(userInfo: CreateUserDto): Promise<UserDto | null> {
+    const createUserDto = UserMapper.fromcreateDtoToOrm(userInfo);
     const createdUser = await this.userRepo.create(createUserDto);
     if (!createdUser) {
       throw new Error('User creation failed');
