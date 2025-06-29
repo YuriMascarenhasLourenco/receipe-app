@@ -1,7 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
+import { RecipeDto } from 'src/application/dtos/recipe.dto';
+import { RecipeUseCase } from 'src/application/use-cases/recipe.use-case';
 
-@Controller()
+@Controller('recipes')
 export class RecipeController {
-  // This controller will handle HTTP requests related to recipes.
-  // Methods for handling requests will be added here in the future.
+ constructor(private readonly recipeUseCase: RecipeUseCase) {}
+ @Post('/new')
+  async createRecipe(recipeDto: RecipeDto) {
+    return this.recipeUseCase.createRecipe(recipeDto);
+  }
 }

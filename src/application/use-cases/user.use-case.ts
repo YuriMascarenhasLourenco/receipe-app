@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-import { UserORMEntity } from 'src/infrastructure/database/typeorm/user.orm-entity';
-import { User } from 'src/domain/entities/user.entity';
+import { UserDto } from '../dtos/user.dto';
 
 Injectable();
 export class UserUseCase {
@@ -21,19 +20,22 @@ export class UserUseCase {
     // Implement user login logic here
     return { message: 'User logged in successfully', credentials };
   }
-  async getUserProfile(userId: string): Promise<UserORMEntity | null> {
-    // Implement logic to retrieve user profile
-    return this.userService.getUserDetails(Number(userId));
+  async getUserProfile(userId: string): Promise<UserDto | null> {
+    const user = await this.userService.getUserDetails(Number(userId));
+    if (!user) {
+      return null;
+    }
+    return user;
   }
   async updateUserProfile(
     userId: string,
-    userData: User,
-  ): Promise<UserORMEntity | null> {
+    userData: UserDto,
+  ): Promise<UserDto | null> {
     const user = await this.userService.getUserDetails(Number(userId));
     if (!user) {
       throw new Error('User not found');
+      return null;
     }
-    this.userService.updateUserDetails(Number(userId), userData);
-    return null;
+    return await this.userService.updateUserDetails(Number(userId), userData);
   }
 }

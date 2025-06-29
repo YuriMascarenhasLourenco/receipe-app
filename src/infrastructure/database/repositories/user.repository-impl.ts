@@ -3,6 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from 'src/domain/repository/user.repository';
 import { UserORMEntity } from '../typeorm/user.orm-entity';
 import { Repository } from 'typeorm';
+import { CreateUserDto } from 'src/application/dtos/create-user.dto';
+import { UserDto } from 'src/application/dtos/user.dto';
+import { plainToInstance } from 'class-transformer';
+import { UserMapper } from 'src/infrastructure/mappers/user.mapper';
 
 @Injectable()
 export class UserRepositoryImpl implements UserRepository {
@@ -10,21 +14,25 @@ export class UserRepositoryImpl implements UserRepository {
     @InjectRepository(UserORMEntity)
     private readonly ormRepo: Repository<UserORMEntity>,
   ) {}
-  async create(user: UserORMEntity): Promise<UserORMEntity> {
+  async create(user: CreateUserDto): Promise<UserORMEntity> {
     return this.ormRepo.save(user);
   }
-  async getMe(id: number): Promise<UserORMEntity | null> {
-    return this.ormRepo.findOne({ where: { id } });
+  async getMe(id: number): Promise<UserDto | null> {
+    const userDetails = await this.ormRepo.findOne({ where: { id } });
+    if (!userDetails) {
+      return null;
+    }
+    const detailsDto = UserMapper.toDto(userDetails);
+    return detailsDto;
   }
-  async delete(id: number): Promise<UserORMEntity | null> {
+  async delete(id: number): Promise<void> {
     const existingUser = await this.ormRepo.findOne({ where: { id } });
     if (!existingUser) {
       return null;
     }
     await this.ormRepo.remove(existingUser);
-    return existingUser;
   }
-  async update(id: number, user: UserORMEntity): Promise<UserORMEntity | null> {
+  async update(id: number, user: UserDto): Promise<UserDto | null> {
     const existingUser = await this.ormRepo.findOne({ where: { id } });
     if (!existingUser) {
       return null;
@@ -33,6 +41,7 @@ export class UserRepositoryImpl implements UserRepository {
     existingUser.email = user.email;
     existingUser.password = user.password;
     await this.ormRepo.save(existingUser);
-    return existingUser;
+    const updatedUser = plainToInstance(UserDto, existingUser);
+    return updatedUser;
   }
 }
