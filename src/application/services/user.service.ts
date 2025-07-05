@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { User } from 'src/domain/entities/user.entity';
 import { UserRepository } from 'src/domain/repository/user.repository';
 import { UserMapper } from 'src/infrastructure/mappers/user.mapper';
 import { UserDto } from '../dtos/user.dto';
@@ -18,7 +17,6 @@ export class UserService {
     return user;
   }
   async deleteUser(userId: number): Promise<void> {
-    // Logic to delete a user from the database or another service
     const user = await this.userRepo.getMe(userId);
     if (!user) {
       throw new Error('User not found');
@@ -42,7 +40,14 @@ export class UserService {
     if (!user) {
       return null;
     }
-    // Crie um novo CreateUserDto com os dados atualizados
     return this.userRepo.update(userId, userData);
+  }
+  async findUser(email: string, password: string): Promise<UserDto | null> {
+    const user = await this.userRepo.findLogedUser(email, password);
+    console.log('userFind:', user);
+    if (!user) {
+      return null;
+    }
+    return user;
   }
 }

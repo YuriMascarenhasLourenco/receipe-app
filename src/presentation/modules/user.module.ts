@@ -18,6 +18,6 @@ import { UserRepositoryImpl } from 'src/infrastructure/database/repositories/use
     },
     UserRepositoryImpl,
   ],
-  exports: [],
+  exports: [UserService],
 })
 export class UserModule {}

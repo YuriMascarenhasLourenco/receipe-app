@@ -6,4 +6,5 @@ export interface UserRepository {
   update(id: number, user: Partial<UserDto>): Promise<UserDto | null>;
   delete(id: number): Promise<void>;
   getMe(id: number): Promise<UserDto | null>;
+  findLogedUser(email: string, password: string): Promise<UserDto | null>;
 }

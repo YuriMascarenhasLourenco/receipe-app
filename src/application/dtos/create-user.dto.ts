@@ -8,6 +8,8 @@ export class CreateUserDto {
   password: string;
   @IsEmail()
   email: string;
+  @IsString()
+  salt: string;
   @IsDate()
   createdAt?: Date;
   @IsDate()
@@ -18,6 +20,7 @@ export class CreateUserDto {
     username: string,
     password: string,
     email: string,
+    salt?: string,
     createdAt?: Date,
     updatedAt?: Date,
     recipes: RecipeDto[] = [],
@@ -28,5 +31,6 @@ export class CreateUserDto {
     this.createdAt = createdAt || new Date();
     this.updatedAt = updatedAt || new Date();
     this.recipes = recipes;
+    this.salt = salt;
   }
 }

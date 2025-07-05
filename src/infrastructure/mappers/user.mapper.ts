@@ -21,6 +21,7 @@ export class UserMapper {
     orm.username = dto.username;
     orm.email = dto.email;
     orm.password = dto.password;
+    orm.salt = dto.salt;
     orm.createdAt = new Date();
     orm.updatedAt = new Date();
     return orm;
@@ -34,9 +35,9 @@ export class UserMapper {
       domain.username,
       domain.email,
       domain.password,
-      domain.createdAt,
+      domain.salt,
+      domain.createdAt, // Passe Date diretamente
       domain.updatedAt,
-      // Pass recipes as the last argument, assuming UserDto's constructor expects recipes last
       domain.recipes?.map((recipe) => RecipeMapper.toDto(recipe)) || [],
     );
   }
@@ -46,8 +47,9 @@ export class UserMapper {
       orm.username,
       orm.email,
       orm.password,
-      orm.createdAt,
-      orm.updatedAt,
+      orm.salt,
+      orm.createdAt, // Date
+      orm.updatedAt, // Date
       orm.recipes?.map((recipe) => RecipeMapper.toDomain(recipe)) || [],
     );
   }

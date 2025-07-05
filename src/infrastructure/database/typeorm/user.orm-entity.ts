@@ -11,6 +11,8 @@ export class UserORMEntity {
   password: string;
   @Column({ unique: true })
   email: string;
+  @Column({ nullable: false })
+  salt: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
   @Column({ type: 'timestamp', nullable: true })
