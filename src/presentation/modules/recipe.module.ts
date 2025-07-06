@@ -5,13 +5,21 @@ import { RecipeController } from '../controllers/recipe.controller';
 import { RecipeUseCase } from 'src/application/use-cases/recipe.use-case';
 import { RecipeService } from 'src/application/services/recipe.service';
 import { RecipeRepositoryImpl } from 'src/infrastructure/database/repositories/recipe.repository-impl';
+import { TextController } from '../controllers/ai.controller';
+import { GenerateTextUseCase } from 'src/application/use-cases/generate-recipe.use-case';
+import { GithubAiService } from 'src/infrastructure/ai/huggingface.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([RecipeORMEntity])],
-  controllers: [RecipeController],
+  controllers: [RecipeController, TextController],
   providers: [
     RecipeUseCase,
     RecipeService,
+    GenerateTextUseCase,
+    {
+      provide: 'HuggingFaceServiceInterface',
+      useClass: GithubAiService,
+    },
     {
       provide: 'RecipeRepository',
       useClass: RecipeRepositoryImpl,
