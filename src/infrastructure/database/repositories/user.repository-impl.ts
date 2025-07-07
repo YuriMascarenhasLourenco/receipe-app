@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from 'src/domain/repository/user.repository';
 import { UserORMEntity } from '../typeorm/user.orm-entity';
@@ -8,6 +8,7 @@ import { UserDto } from 'src/application/dtos/user.dto';
 import { plainToInstance } from 'class-transformer';
 import { UserMapper } from 'src/infrastructure/mappers/user.mapper';
 import * as bcrypt from 'bcrypt';
+import { i18nValidationMessage } from 'nestjs-i18n';
 
 @Injectable()
 export class UserRepositoryImpl implements UserRepository {
@@ -26,7 +27,10 @@ export class UserRepositoryImpl implements UserRepository {
   async getMe(id: number): Promise<UserDto | null> {
     const userDetails = await this.ormRepo.findOne({ where: { id } });
     if (!userDetails) {
-      return null;
+      throw new HttpException(
+        i18nValidationMessage('validation.userNotFound'),
+        404,
+      );
     }
     const detailsDto = UserMapper.toDto(userDetails);
     return detailsDto;
@@ -34,14 +38,20 @@ export class UserRepositoryImpl implements UserRepository {
   async delete(id: number): Promise<void> {
     const existingUser = await this.ormRepo.findOne({ where: { id } });
     if (!existingUser) {
-      return null;
+      throw new HttpException(
+        i18nValidationMessage('validation.userNotFound'),
+        404,
+      );
     }
     await this.ormRepo.remove(existingUser);
   }
   async update(id: number, user: UserDto): Promise<UserDto | null> {
     const existingUser = await this.ormRepo.findOne({ where: { id } });
     if (!existingUser) {
-      return null;
+      throw new HttpException(
+        i18nValidationMessage('validation.userNotFound'),
+        404,
+      );
     }
     existingUser.username = user.username;
     existingUser.email = user.email;
@@ -56,11 +66,17 @@ export class UserRepositoryImpl implements UserRepository {
   ): Promise<UserDto | null> {
     const findByEmail = await this.ormRepo.findOneBy({ email });
     if (!findByEmail) {
-      return null;
+      throw new HttpException(
+        i18nValidationMessage('validation.userNotFound'),
+        404,
+      );
     }
     const hashedPassword = await bcrypt.hash(password, findByEmail.salt);
     if (hashedPassword !== findByEmail.password) {
-      return null;
+      throw new HttpException(
+        i18nValidationMessage('validation.invalidPassword'),
+        401,
+      );
     }
     return UserMapper.toDto(findByEmail);
   }

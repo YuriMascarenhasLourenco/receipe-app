@@ -1,10 +1,11 @@
 import { IsDate, IsEmail, IsString } from 'class-validator';
 import { RecipeDto } from './recipe.dto';
+import { i18nValidationMessage } from 'nestjs-i18n';
 
 export class CreateUserDto {
-  @IsString()
+  @IsString({ message: i18nValidationMessage('validation.username') })
   username: string;
-  @IsString()
+  @IsString({ message: i18nValidationMessage('validation.password') })
   password: string;
   @IsEmail()
   email: string;

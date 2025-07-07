@@ -1,0 +1,15 @@
+{
+    "common": {
+        "welcome": "Welcome to Recipe book Ai",
+        "search": "Search recipes",
+        "noResults": "No results found",
+        "error": "An error ocurred, please try again later",
+        "loading": "loading...",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "viewDetails": "view Details"
+    }
+}
