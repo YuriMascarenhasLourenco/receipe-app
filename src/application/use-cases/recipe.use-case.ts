@@ -1,12 +1,15 @@
-import { Injectable } from '@nestjs/common';
-import { RecipeService } from '../services/recipe.service';
+import { Inject, Injectable } from '@nestjs/common';
 import { RecipeMapper } from '../../infrastructure/mappers/recipe.mapper';
 import { RecipeDto } from '../dtos/recipe.dto';
+import { RecipeRepository } from 'src/domain/repository/recipe.repository';
 @Injectable()
 export class RecipeUseCase {
-  constructor(private readonly recipeService: RecipeService) {}
+  constructor(
+    @Inject('RecipeRepository')
+    private readonly recipeService: RecipeRepository,
+  ) {}
   async createRecipe(recipe: RecipeDto): Promise<RecipeDto> {
     const recipeEntity = RecipeMapper.toOrmEntity(recipe);
-    return this.recipeService.createRecipe(recipeEntity);
+    return this.recipeService.create(recipeEntity);
   }
 }

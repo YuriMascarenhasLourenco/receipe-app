@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { AzureKeyCredential } from '@azure/core-auth';
 import ModelClient, { isUnexpected } from '@azure-rest/ai-inference';
 import { AiServiceInterface } from 'src/domain/services/huggingface.service';
+import { CreateRecipeDto } from 'src/application/dtos/create-recipe.dto';
 
 @Injectable()
 export class GithubAiService implements AiServiceInterface {
@@ -20,7 +21,7 @@ export class GithubAiService implements AiServiceInterface {
     this.client = ModelClient(endpoint, new AzureKeyCredential(token));
   }
 
-  async chat(userMessage: string): Promise<string> {
+  async chat(userMessage: CreateRecipeDto): Promise<string> {
     const response = await this.client.path('/chat/completions').post({
       body: {
         model: this.model,
@@ -31,7 +32,7 @@ export class GithubAiService implements AiServiceInterface {
           },
           {
             role: 'user',
-            content: `Quero que você me dê uma receita de ${userMessage} com a formatação de titulo indredientes e instruções`,
+            content: `Quero que você me dê uma receita de ${userMessage.title} com a formatação de titulo ingredientes e instruções em inglês. Estruture a resposta como uma entidade JSON com os campos: title (string), ingredients (strings) e instructions (string).`,
           },
         ],
         temperature: 1,

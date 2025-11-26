@@ -1,3 +1,5 @@
+import { CreateRecipeDto } from 'src/application/dtos/create-recipe.dto';
+
 export abstract class AiServiceInterface {
-  abstract chat(message: string): Promise<string>;
+  abstract chat(message: CreateRecipeDto): Promise<string>;
 }

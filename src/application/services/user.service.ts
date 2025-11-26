@@ -3,6 +3,7 @@ import { UserRepository } from 'src/domain/repository/user.repository';
 import { UserMapper } from 'src/infrastructure/mappers/user.mapper';
 import { UserDto } from '../dtos/user.dto';
 import { CreateUserDto } from '../dtos/create-user.dto';
+import { updateUserDto } from '../dtos/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -32,15 +33,12 @@ export class UserService {
     return createdUser;
   }
 
-  async updateUserDetails(
-    userId: number,
-    userData: Partial<UserDto>,
-  ): Promise<UserDto | null> {
-    const user = await this.userRepo.getMe(userId);
+  async updateUserDetails(userData: updateUserDto): Promise<UserDto | null> {
+    const user = await this.userRepo.getMe(userData.id);
     if (!user) {
       return null;
     }
-    return this.userRepo.update(userId, userData);
+    return this.userRepo.update(userData);
   }
   async findUser(email: string, password: string): Promise<UserDto | null> {
     const user = await this.userRepo.findLogedUser(email, password);

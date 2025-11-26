@@ -16,6 +16,10 @@ import * as path from 'path';
 
 @Module({
   imports: [
+    AuthModule,
+    DatabaseModule,
+    RecipeModule,
+    UserModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -33,10 +37,6 @@ import * as path from 'path';
         new HeaderResolver(['x-lang']),
       ],
     }),
-    AuthModule,
-    DatabaseModule,
-    RecipeModule,
-    UserModule,
   ],
   providers: [
     {

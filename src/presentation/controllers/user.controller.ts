@@ -1,5 +1,7 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { ApiBearerAuth, ApiParam } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/application/dtos/create-user.dto';
+import { updateUserDto } from 'src/application/dtos/update-user.dto';
 import { UserDto } from 'src/application/dtos/user.dto';
 import { UserUseCase } from 'src/application/use-cases/user.use-case';
 import { Public } from 'src/infrastructure/auth/decorators/public.decorator';
@@ -13,16 +15,23 @@ export class UserController {
     return this.userUseCase.registerUser(User);
   }
 
-  @Post('/profile/:id')
-  async getUserProfile(@Body('id') userId: string): Promise<UserDto | null> {
-    return this.userUseCase.getUserProfile(userId);
+  @ApiBearerAuth('access-token')
+  @Get('/profile/:id')
+  @ApiParam({
+    name: 'id',
+    type: Number,
+    required: true,
+    description: 'User ID',
+  })
+  async getUserProfile(@Param('id') id: string): Promise<UserDto | null> {
+    console.log('userId:', Number(id));
+    return this.userUseCase.getUserProfile(Number(id));
   }
-
-  @Post('/update/:id')
+  @ApiBearerAuth('access-token')
+  @Patch('/update')
   async updateUserProfile(
-    @Body('id') userId: string,
-    @Body() userData: UserDto,
+    @Body() userData: updateUserDto,
   ): Promise<UserDto | null> {
-    return this.userUseCase.updateUserProfile(userId, userData);
+    return this.userUseCase.updateUserProfile(userData);
   }
 }

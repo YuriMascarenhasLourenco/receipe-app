@@ -1,18 +1,16 @@
-import { UserService } from '../services/user.service';
 import { UserDto } from '../dtos/user.dto';
 import { CreateUserDto } from '../dtos/create-user.dto';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { UserRepository } from 'src/domain/repository/user.repository';
+import { updateUserDto } from '../dtos/update-user.dto';
 @Injectable()
 export class UserUseCase {
-  // This class can be used to implement user-related use cases
-  // For example, user registration, login, profile management, etc.
-
-  constructor(private readonly userService: UserService) {
-    // Replace 'any' with the actual user service type
-  }
+  constructor(
+    @Inject('UserRepository') private readonly userService: UserRepository,
+  ) {}
 
   async registerUser(userData: CreateUserDto): Promise<UserDto | null> {
-    const savedUser = await this.userService.createUser(userData);
+    const savedUser = await this.userService.create(userData);
     if (!savedUser) {
       throw new Error('User registration failed');
     }
@@ -23,22 +21,18 @@ export class UserUseCase {
     // Implement user login logic here
     return { message: 'User logged in successfully', credentials };
   }
-  async getUserProfile(userId: string): Promise<UserDto | null> {
-    const user = await this.userService.getUserDetails(Number(userId));
+  async getUserProfile(userId: number): Promise<UserDto | null> {
+    const user = await this.userService.getMe(userId);
     if (!user) {
       return null;
     }
     return user;
   }
-  async updateUserProfile(
-    userId: string,
-    userData: UserDto,
-  ): Promise<UserDto | null> {
-    const user = await this.userService.getUserDetails(Number(userId));
+  async updateUserProfile(userData: updateUserDto): Promise<UserDto | null> {
+    const user = await this.userService.getMe(Number(userData.id));
     if (!user) {
       throw new Error('User not found');
-      return null;
     }
-    return await this.userService.updateUserDetails(Number(userId), userData);
+    return await this.userService.update(userData);
   }
 }

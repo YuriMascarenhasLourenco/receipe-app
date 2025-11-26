@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-
 import { LoginDto } from '../dtos/login-user.dto';
 import { IAuthService } from 'src/domain/auth/auth.interface';
 

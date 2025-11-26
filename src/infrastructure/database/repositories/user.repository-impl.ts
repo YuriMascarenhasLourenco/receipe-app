@@ -9,6 +9,7 @@ import { plainToInstance } from 'class-transformer';
 import { UserMapper } from 'src/infrastructure/mappers/user.mapper';
 import * as bcrypt from 'bcrypt';
 import { i18nValidationMessage } from 'nestjs-i18n';
+import { updateUserDto } from 'src/application/dtos/update-user.dto';
 
 @Injectable()
 export class UserRepositoryImpl implements UserRepository {
@@ -45,15 +46,15 @@ export class UserRepositoryImpl implements UserRepository {
     }
     await this.ormRepo.remove(existingUser);
   }
-  async update(id: number, user: UserDto): Promise<UserDto | null> {
-    const existingUser = await this.ormRepo.findOne({ where: { id } });
+  async update(user: updateUserDto): Promise<UserDto | null> {
+    const existingUser = await this.ormRepo.findOne({ where: { id: user.id } });
     if (!existingUser) {
       throw new HttpException(
         i18nValidationMessage('validation.userNotFound'),
         404,
       );
     }
-    existingUser.username = user.username;
+    existingUser.username = user.name;
     existingUser.email = user.email;
     existingUser.password = user.password;
     await this.ormRepo.save(existingUser);

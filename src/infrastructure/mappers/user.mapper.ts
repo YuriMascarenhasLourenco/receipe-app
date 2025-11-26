@@ -21,9 +21,7 @@ export class UserMapper {
     orm.username = dto.username;
     orm.email = dto.email;
     orm.password = dto.password;
-    orm.salt = dto.salt;
-    orm.createdAt = new Date();
-    orm.updatedAt = new Date();
+    orm.salt = dto.salt || '';
     return orm;
   }
   static toCreateDto(domain: User): CreateUserDto {
@@ -36,7 +34,7 @@ export class UserMapper {
       domain.email,
       domain.password,
       domain.salt,
-      domain.createdAt, // Passe Date diretamente
+      domain.createdAt,
       domain.updatedAt,
       domain.recipes?.map((recipe) => RecipeMapper.toDto(recipe)) || [],
     );

@@ -16,7 +16,6 @@ import { UserRepositoryImpl } from 'src/infrastructure/database/repositories/use
       provide: 'UserRepository',
       useClass: UserRepositoryImpl,
     },
-    UserRepositoryImpl,
   ],
   exports: [UserService],
 })

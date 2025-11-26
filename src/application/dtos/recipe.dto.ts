@@ -1,15 +1,22 @@
 import { IsArray, IsDate, IsNumber, IsString } from 'class-validator';
 import { CreateRecipeDto } from './create-recipe.dto';
 import { UserDto } from './user.dto';
+import { ApiProperty } from '@nestjs/swagger';
 export class RecipeDto extends CreateRecipeDto {
   @IsNumber()
   id: number;
+
+  @ApiProperty()
   @IsArray()
   ingredients: string;
+
+  @ApiProperty()
   @IsString()
   instructions: string;
+
   @IsDate()
   createdAt: Date;
+
   @IsDate()
   updatedAt?: Date;
   user?: UserDto; // Relacionamento com o usuário
