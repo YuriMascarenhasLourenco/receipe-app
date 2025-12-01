@@ -1,23 +1,26 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserDto } from 'src/application/dtos/user.dto';
-import { UserService } from 'src/application/services/user.service';
-import { IAuthService } from 'src/domain/auth/auth.interface';
+import { AuthInterface } from 'src/domain/auth/auth.interface';
+import { UserRepository } from 'src/domain/repository/user.repository';
 
 @Injectable()
-export class JwtAuthService implements IAuthService {
+export class JwtAuthService implements AuthInterface {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly usersService: UserService,
+    @Inject('UserRepository') private readonly usersRepository: UserRepository,
   ) {}
 
   async validateUser(email: string, password: string): Promise<UserDto | null> {
-    const user = await this.usersService.findUser(email, password);
-    console.log('user:', user);
-    if (user) {
-      return user;
-    }
-    return null;
+    const user = await this.usersRepository.findbyEmail(email);
+    if (!user) return null;
+    const matches = await this.usersRepository.comparePassword(
+      password,
+      user.password,
+    );
+    if (!matches) return null;
+
+    return user;
   }
 
   async login(user: UserDto): Promise<{ access_token: string }> {
