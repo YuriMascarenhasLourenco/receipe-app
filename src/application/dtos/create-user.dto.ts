@@ -1,15 +1,14 @@
-import { IsDate, IsEmail, IsString } from 'class-validator';
-import { RecipeDto } from './recipe.dto';
-import { i18nValidationMessage } from 'nestjs-i18n';
+import { IsEmail, IsString } from 'class-validator';
+
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
   @ApiProperty()
-  @IsString({ message: i18nValidationMessage('validation.username') })
+  @IsString()
   username: string;
 
   @ApiProperty()
-  @IsString({ message: i18nValidationMessage('validation.password') })
+  @IsString()
   password: string;
 
   @ApiProperty()
