@@ -18,7 +18,6 @@ export class UserUseCase {
   }
 
   async loginUser(credentials: any): Promise<any> {
-    // Implement user login logic here
     return { message: 'User logged in successfully', credentials };
   }
   async getUserProfile(userId: number): Promise<UserDto | null> {
@@ -34,5 +33,8 @@ export class UserUseCase {
       throw new Error('User not found');
     }
     return await this.userService.update(userData);
+  }
+  async deleteUser(userId: number): Promise<void> {
+    await this.userService.delete(userId);
   }
 }
