@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiParam } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/application/dtos/create-user.dto';
 import { updateUserDto } from 'src/application/dtos/update-user.dto';
@@ -33,5 +41,16 @@ export class UserController {
     @Body() userData: updateUserDto,
   ): Promise<UserDto | null> {
     return this.userUseCase.updateUserProfile(userData);
+  }
+  @ApiBearerAuth('access-token')
+  @Delete('/delete/:id')
+  @ApiParam({
+    name: 'id',
+    type: Number,
+    required: true,
+    description: 'User ID',
+  })
+  async deleteUser(@Param('id') id: string): Promise<void> {
+    return this.userUseCase.deleteUser(Number(id));
   }
 }
