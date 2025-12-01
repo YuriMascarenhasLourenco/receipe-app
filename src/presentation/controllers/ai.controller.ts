@@ -1,5 +1,5 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { CreateRecipeDto } from 'src/application/dtos/create-recipe.dto';
+import { generateRecipeDto } from 'src/application/dtos/generate-recipe.dto';
 import { GenerateTextUseCase } from 'src/application/use-cases/generate-recipe.use-case';
 import { Public } from 'src/infrastructure/auth/decorators/public.decorator';
 
@@ -9,7 +9,9 @@ export class TextController {
 
   @Public()
   @Post('generate')
-  async generate(@Body() prompt: CreateRecipeDto) {
+  async generate(
+    @Body() prompt: generateRecipeDto,
+  ): Promise<{ result: string }> {
     const result = await this.generateTextUseCase.execute(prompt);
     return { result };
   }
