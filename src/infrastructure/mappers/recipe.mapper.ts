@@ -2,6 +2,8 @@ import { Recipe } from 'src/domain/entities/recipe.entity';
 import { RecipeORMEntity } from '../database/typeorm/recipe.orm-entity';
 import { UserMapper } from './user.mapper';
 import { RecipeDto } from 'src/application/dtos/recipe.dto';
+import { CreateRecipeDto } from 'src/application/dtos/create-recipe.dto';
+import { UpdateRecipeDto } from 'src/application/dtos/update-recipe.dto';
 
 export class RecipeMapper {
   static toDomain(recipeOrmEntity: RecipeORMEntity): Recipe {
@@ -26,15 +28,21 @@ export class RecipeMapper {
     );
   }
 
-  static toOrmEntity(recipeDomainEntity: Recipe): RecipeORMEntity {
+  static toOrmEntity(recipeDomainEntity: CreateRecipeDto): RecipeORMEntity {
+    const orm = new RecipeORMEntity();
+    orm.title = recipeDomainEntity.title;
+    orm.ingredients = recipeDomainEntity.ingredients;
+    orm.instructions = recipeDomainEntity.instructions;
+    return orm;
+  }
+  static toOrmEntityUpdate(
+    recipeDomainEntity: UpdateRecipeDto,
+  ): RecipeORMEntity {
     const orm = new RecipeORMEntity();
     orm.id = recipeDomainEntity.id;
     orm.title = recipeDomainEntity.title;
     orm.ingredients = recipeDomainEntity.ingredients;
     orm.instructions = recipeDomainEntity.instructions;
-    orm.user = recipeDomainEntity.user
-      ? UserMapper.toOrmEntity(recipeDomainEntity.user)
-      : null; // Relacionamento
     return orm;
   }
 }
