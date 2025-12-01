@@ -7,5 +7,9 @@ export interface UserRepository {
   update(user: updateUserDto): Promise<UserDto | null>;
   delete(id: number): Promise<void>;
   getMe(id: number): Promise<UserDto | null>;
-  findLogedUser(email: string, password: string): Promise<UserDto | null>;
+  findbyEmail(email: string): Promise<UserDto | null>;
+  comparePassword(
+    plainPassword: string,
+    hashedPassword: string,
+  ): Promise<boolean>;
 }
