@@ -21,9 +21,10 @@ import { UserModule } from './user.module';
     ValidateUserUseCase,
     JwtStrategy,
     {
-      provide: 'IAuthService',
+      provide: 'AuthInterface',
       useClass: JwtAuthService,
     },
   ],
+  exports: [],
 })
 export class AuthModule {}
