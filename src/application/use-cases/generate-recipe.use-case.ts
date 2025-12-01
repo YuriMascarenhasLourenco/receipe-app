@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AiServiceInterface } from 'src/domain/services/huggingface.service';
-import { CreateRecipeDto } from '../dtos/create-recipe.dto';
+
+import { generateRecipeDto } from '../dtos/generate-recipe.dto';
 
 @Injectable()
 export class GenerateTextUseCase {
@@ -9,7 +10,7 @@ export class GenerateTextUseCase {
     private readonly huggingFaceService: AiServiceInterface,
   ) {}
 
-  async execute(prompt: CreateRecipeDto): Promise<string> {
+  async execute(prompt: generateRecipeDto): Promise<string> {
     return this.huggingFaceService.chat(prompt);
   }
 }
