@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from 'src/domain/repository/user.repository';
 import { UserORMEntity } from '../typeorm/user.orm-entity';
@@ -41,7 +41,7 @@ export class UserRepositoryImpl implements UserRepository {
     if (!existingUser) {
       throw new HttpException(
         i18nValidationMessage('validation.userNotFound'),
-        404,
+        HttpStatus.NOT_FOUND,
       );
     }
     await this.ormRepo.remove(existingUser);
@@ -61,10 +61,7 @@ export class UserRepositoryImpl implements UserRepository {
     const updatedUser = plainToInstance(UserDto, existingUser);
     return updatedUser;
   }
-  async findLogedUser(
-    email: string,
-    password: string,
-  ): Promise<UserDto | null> {
+  async findbyEmail(email: string): Promise<UserDto | null> {
     const findByEmail = await this.ormRepo.findOneBy({ email });
     if (!findByEmail) {
       throw new HttpException(
@@ -72,13 +69,13 @@ export class UserRepositoryImpl implements UserRepository {
         404,
       );
     }
-    const hashedPassword = await bcrypt.hash(password, findByEmail.salt);
-    if (hashedPassword !== findByEmail.password) {
-      throw new HttpException(
-        i18nValidationMessage('validation.invalidPassword'),
-        401,
-      );
-    }
+
     return UserMapper.toDto(findByEmail);
+  }
+  async comparePassword(
+    plainPassword: string,
+    hashedPassword: string,
+  ): Promise<boolean> {
+    return await bcrypt.compare(plainPassword, hashedPassword);
   }
 }
