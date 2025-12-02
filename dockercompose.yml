@@ -1,0 +1,44 @@
+version: '3.9'
+services:
+  app:
+    container_name: recipe-search-app
+    build: ./
+    context: .
+    dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    restart: always
+    environment:
+      - PORT=your_port_number
+      - DB_HOST=postgres
+        JWT_SECRET=your_jwt_secret 
+        DB_PORT=your_DB_port_number
+        DB_USERNAME=your_DB_username
+        GITHUB_TOKEN=your_github_token
+        GH_AI_ENDPOINT=your_GH_AI_endpoint
+        GH_AI_MODEL=your_GH_AI_model
+    ports:
+      - '3000:3000'
+    networks:
+      - public_network
+      - private_network
+  postgres:
+    image: postgres:16
+    container_name: recipe-search-postgres
+    environment:
+      DB_USERNAME: yourusername
+      DB_PASSWORD: yourpassword
+      DB_NAME: recipedb
+      DB_PORT: your_DB_port_number
+      DB_HOST: yourhost
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      -private_network
+networks:
+  public_network:
+    driver: bridge
+  private_network:
+    driver: bridge
