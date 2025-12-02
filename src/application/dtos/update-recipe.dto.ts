@@ -6,15 +6,24 @@ export class UpdateRecipeDto {
   @IsNumber()
   id: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'the recipe name',
+    example: 'Pancakes',
+  })
   @IsString()
   title?: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'the recipe ingredients',
+    example: 'Flour, Eggs, Milk, Sugar, Baking Powder',
+  })
   @IsString()
   ingredients?: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'the recipe instructions',
+    example: '1. Mix ingredients. 2. Cook on a griddle until golden brown.',
+  })
   @IsString()
   instructions?: string;
 }
