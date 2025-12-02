@@ -6,11 +6,17 @@ export class RecipeDto extends CreateRecipeDto {
   @IsNumber()
   id: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'List of ingredients',
+    example: '2 cups of flour, 1 cup of sugar, 1/2 cup of milk',
+  })
   @IsArray()
   ingredients: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Step-by-step cooking instructions',
+    example: '1. Preheat the oven to 350°F (175°C). 2. Mix all ingredients...'
+})
   @IsString()
   instructions: string;
 
