@@ -10,15 +10,24 @@ export class UserDto extends CreateUserDto {
   @IsString()
   salt: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'the user password',
+    example: 'strongPassword123',
+  })
   @IsString()
   password: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'the user email',
+    example: 'anyName@domain.com',
+  })
   @IsString()
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'the user name',
+    example: 'John Doe',
+  })
   @IsString()
   username: string;
 
