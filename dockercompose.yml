@@ -9,14 +9,14 @@ services:
       - postgres
     restart: always
     environment:
-      - PORT=your_port_number
-      - DB_HOST=postgres
-        JWT_SECRET=your_jwt_secret 
-        DB_PORT=your_DB_port_number
-        DB_USERNAME=your_DB_username
-        GITHUB_TOKEN=your_github_token
-        GH_AI_ENDPOINT=your_GH_AI_endpoint
-        GH_AI_MODEL=your_GH_AI_model
+        PORT: {PORT}
+        DB_HOST: {DB_HOST}
+        JWT_SECRET: {JWT_SECRET}
+        DB_PORT: {DB_PORT}
+        DB_USERNAME: {DB_USERNAME}
+        GITHUB_TOKEN: {GITHUB_TOKEN}
+        GH_AI_ENDPOINT: {GH_AI_ENDPOINT}
+        GH_AI_MODEL: {GH_AI_MODEL}
     ports:
       - '3000:3000'
     networks:
@@ -26,11 +26,11 @@ services:
     image: postgres:16
     container_name: recipe-search-postgres
     environment:
-      DB_USERNAME: yourusername
-      DB_PASSWORD: yourpassword
-      DB_NAME: recipedb
-      DB_PORT: your_DB_port_number
-      DB_HOST: yourhost
+      DB_USERNAME: {DB_USERNAME}
+      DB_PASSWORD: {DB_PASSWORD}
+      DB_NAME: {DB_NAME}
+      DB_PORT: {DB_PORT}
+      DB_HOST: {DB_HOST}
     ports:
       - '5432:5432'
     volumes:
