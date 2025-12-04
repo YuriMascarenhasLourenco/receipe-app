@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
+  ApiHeader,
   ApiOperation,
   ApiParam,
   ApiResponse,
@@ -20,6 +21,12 @@ import { UserDto } from 'src/application/dtos/user.dto';
 import { UserUseCase } from 'src/application/use-cases/user.use-case';
 import { Public } from 'src/infrastructure/auth/decorators/public.decorator';
 
+@ApiHeader({
+  name: 'Accept-Language',
+  description:
+    'Language preference for the response. Supported values: en (English), pt (Portuguese). Default is en.',
+  required: false,
+})
 @Controller('user')
 @ApiTags('User')
 export class UserController {
