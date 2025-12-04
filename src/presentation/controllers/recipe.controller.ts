@@ -2,16 +2,21 @@ import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiBody,
+  ApiHeader,
   ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { create } from 'domain';
 import { CreateRecipeDto } from 'src/application/dtos/create-recipe.dto';
 import { RecipeDto } from 'src/application/dtos/recipe.dto';
 import { UpdateRecipeDto } from 'src/application/dtos/update-recipe.dto';
 import { RecipeUseCase } from 'src/application/use-cases/recipe.use-case';
-
+@ApiHeader({
+  name: 'Accept-Language',
+  description:
+    'Language preference for the response. Supported values: en (English), pt (Portuguese). Default is en.',
+  required: false,
+})
 @ApiBearerAuth('access-token')
 @Controller('recipes')
 @ApiTags('Recipes')
