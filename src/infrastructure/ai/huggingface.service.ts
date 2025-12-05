@@ -3,6 +3,7 @@ import { AzureKeyCredential } from '@azure/core-auth';
 import ModelClient, { isUnexpected } from '@azure-rest/ai-inference';
 import { AiServiceInterface } from 'src/domain/services/huggingface.service';
 import { CreateRecipeDto } from 'src/application/dtos/create-recipe.dto';
+import { Language } from 'src/domain/common/language.common';
 
 @Injectable()
 export class GithubAiService implements AiServiceInterface {
@@ -21,28 +22,28 @@ export class GithubAiService implements AiServiceInterface {
     this.client = ModelClient(endpoint, new AzureKeyCredential(token));
   }
 
-  async chat(userMessage: CreateRecipeDto): Promise<string> {
+  async chat(userMessage: CreateRecipeDto, lang: Language): Promise<string> {
     const response = await this.client.path('/chat/completions').post({
       body: {
         model: this.model,
         messages: [
           {
             role: 'system',
-            content: 'Você é um assistente útil para buscar receitas.',
+            content: `Você é um assistente útil para buscar receitas.Escreva as respostas no idioma ${lang}.`,
           },
           {
             role: 'user',
             content: `Quero que você busque uma receita baseada no nome que eu fornecer. Retorne exclusivamente um JSON no seguinte formato:
 
-            {
-            "name": string,
-            "ingredients": string,
-            "instructions": string
-            }
+        {
+        "name": string,
+        "ingredients": string,
+        "instructions": string
+        }
 
-            O campo ingredients deve conter a lista de ingredientes em texto corrido ou lista; o campo instructions deve conter o passo a passo completo.
-            Não adicione comentários, explicações, texto fora do JSON ou campos extras. Apenas o JSON final.
-            A receita a ser buscada é: ${userMessage.title}`,
+        O campo ingredients deve conter a lista de ingredientes em texto corrido ou lista; o campo instructions deve conter o passo a passo completo.
+        Não adicione comentários, explicações, texto fora do JSON ou campos extras. Apenas o JSON final.
+        A receita a ser buscada é: ${userMessage.title}`,
           },
         ],
         temperature: 1,
