@@ -6,6 +6,6 @@ export class generateRecipeDto {
     description: 'the recipe name',
     example: 'Pancakes',
   })
-  @IsString()
+  @IsString({ message: 'validation.FIELD_REQUIRED' })
   title: string;
 }

@@ -15,8 +15,8 @@ export class RecipeDto extends CreateRecipeDto {
 
   @ApiProperty({
     description: 'Step-by-step cooking instructions',
-    example: '1. Preheat the oven to 350°F (175°C). 2. Mix all ingredients...'
-})
+    example: '1. Preheat the oven to 350°F (175°C). 2. Mix all ingredients...',
+  })
   @IsString()
   instructions: string;
 
@@ -25,8 +25,7 @@ export class RecipeDto extends CreateRecipeDto {
 
   @IsDate()
   updatedAt?: Date;
-  user?: UserDto; // Relacionamento com o usuário
-  // Relacionamento com o usuário
+  user?: UserDto;
   constructor(
     id: number,
     title: string,
@@ -34,7 +33,7 @@ export class RecipeDto extends CreateRecipeDto {
     instructions: string,
     createdAt: Date,
     updatedAt?: Date,
-    user?: UserDto, // Relacionamento com o usuário
+    user?: UserDto,
   ) {
     super(title);
     this.ingredients = ingredients;

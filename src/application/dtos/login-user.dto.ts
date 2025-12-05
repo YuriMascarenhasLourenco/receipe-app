@@ -14,7 +14,7 @@ export class LoginDto {
     description: 'the user password',
     example: 'strongPassword123',
   })
-  @IsString({ message: i18nValidationMessage('validation.password') })
+  @IsString({ message: i18nValidationMessage('auth.PASSWORD_INCORRECT') })
   password: string;
 
   constructor(email: string, password: string) {
