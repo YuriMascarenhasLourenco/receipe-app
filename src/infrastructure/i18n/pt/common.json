@@ -1,15 +1,59 @@
 {
-    "common": {
-        "welcome": "Bem-vindo ao recipe book Ai",
-        "search": "Pesquisar receitas",
-        "noResults": "Nenhum resultado encontrado",
-        "error": "Ocorreu um erro, tente novamente mais tarde",
-        "loading": "Carregando...",
-        "submit": "Enviar",
-        "cancel": "Cancelar",
-        "save": "Salvar",
-        "delete": "Excluir",
-        "edit": "Editar",
-        "viewDetails": "Ver detalhes"
-    }
+  "common": {
+    "SUCCESS": "Operação realizada com sucesso",
+    "CREATED": "Registro criado com sucesso",
+    "UPDATED": "Registro atualizado com sucesso",
+    "DELETED": "Registro removido com sucesso",
+    "INVALID_INPUT": "Os dados fornecidos são inválidos",
+    "UNAUTHORIZED": "Você não tem autorização para acessar este recurso"
+  },
+
+  "auth": {
+    "USER_REGISTERED": "Usuário registrado com sucesso",
+    "LOGIN_SUCCESS": "Login efetuado com sucesso",
+    "INVALID_CREDENTIALS": "Credenciais inválidas",
+    "EMAIL_ALREADY_EXISTS": "Este e-mail já está sendo utilizado",
+    "JWT_INVALID": "Token JWT inválido",
+    "JWT_EXPIRED": "O token expirou. Faça login novamente",
+    "JWT_MISSING": "Token JWT não encontrado",
+    "PASSWORD_TOO_WEAK": "A senha não atende aos requisitos mínimos",
+    "PASSWORD_INCORRECT": "Senha incorreta",
+    "USER_NOT_FOUND": "Usuário não encontrado"
+  },
+
+  "user": {
+    "PROFILE_RETURNED": "Perfil retornado com sucesso",
+    "USER_UPDATED": "Usuário atualizado com sucesso",
+    "USER_DELETED": "Usuário deletado com sucesso"
+  },
+
+  "recipe": {
+    "RECIPE_CREATED": "Receita criada com sucesso",
+    "RECIPE_UPDATED": "Receita atualizada com sucesso",
+    "RECIPE_DELETED": "Receita removida com sucesso",
+    "RECIPE_NOT_FOUND": "Receita não encontrada",
+    "INVALID_RECIPE_NAME": "O nome da receita é inválido",
+    "INGREDIENTS_REQUIRED": "É necessário informar ao menos um ingrediente",
+    "INSTRUCTIONS_REQUIRED": "Campo de instruções é obrigatório",
+    "AI_GENERATION_FAILED": "Não foi possível gerar a receita usando IA",
+    "AI_RECIPE_CREATED": "Receita criada automaticamente usando IA"
+  },
+
+  "validation": {
+    "EMAIL_REQUIRED": "O campo e-mail é obrigatório",
+    "EMAIL_INVALID": "O e-mail fornecido é inválido",
+    "PASSWORD_REQUIRED": "A senha é obrigatória",
+    "PASSWORD_MIN_LENGTH": "A senha deve conter pelo menos {{min}} caracteres",
+    "NAME_REQUIRED": "O nome é obrigatório",
+    "FIELD_REQUIRED": "O campo {{field}} é obrigatório"
+  },
+
+  "errors": {
+    "INTERNAL_SERVER_ERROR": "Ocorreu um erro inesperado. Tente novamente mais tarde",
+    "DATABASE_ERROR": "Erro ao conectar ao banco de dados",
+    "SERVICE_UNAVAILABLE": "Serviço temporariamente indisponível",
+    "INVALID_PAYLOAD": "Payload inválido enviado para a requisição",
+    "NOT_ALLOWED": "Operação não permitida",
+    "UNSUPPORTED_LANGUAGE": "Idioma não suportado"
+  }
 }

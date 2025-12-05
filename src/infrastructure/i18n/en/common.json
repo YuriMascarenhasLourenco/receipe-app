@@ -1,15 +1,60 @@
 {
-    "common": {
-        "welcome": "Welcome to Recipe book Ai",
-        "search": "Search recipes",
-        "noResults": "No results found",
-        "error": "An error ocurred, please try again later",
-        "loading": "loading...",
-        "submit": "Submit",
-        "cancel": "Cancel",
-        "save": "Save",
-        "delete": "Delete",
-        "edit": "Edit",
-        "viewDetails": "view Details"
-    }
+  "common": {
+    "SUCCESS": "Operation completed successfully",
+    "CREATED": "Record created successfully",
+    "UPDATED": "Record updated successfully",
+    "DELETED": "Record removed successfully",
+    "INVALID_INPUT": "The provided data is invalid",
+    "UNAUTHORIZED": "You are not authorized to access this resource"
+  },
+
+  "auth": {
+    "USER_REGISTERED": "User registered successfully",
+    "LOGIN_SUCCESS": "Login successful",
+    "INVALID_CREDENTIALS": "Invalid credentials",
+    "EMAIL_ALREADY_EXISTS": "This email is already in use",
+    "JWT_INVALID": "Invalid JWT token",
+    "JWT_EXPIRED": "Token has expired. Please log in again",
+    "JWT_MISSING": "JWT token not provided",
+    "PASSWORD_TOO_WEAK": "Password does not meet the minimum requirements",
+    "PASSWORD_INCORRECT": "Incorrect password",
+    "USER_NOT_FOUND": "User not found"
+  },
+
+  "user": {
+    "PROFILE_RETURNED": "User profile returned successfully",
+    "USER_UPDATED": "User updated successfully",
+    "USER_DELETED": "User deleted successfully"
+  },
+
+  "recipe": {
+    "RECIPE_CREATED": "Recipe created successfully",
+    "RECIPE_UPDATED": "Recipe updated successfully",
+    "RECIPE_DELETED": "Recipe removed successfully",
+    "RECIPE_NOT_FOUND": "Recipe not found",
+    "INVALID_RECIPE_NAME": "Recipe name is invalid",
+    "INGREDIENTS_REQUIRED": "At least one ingredient is required",
+    "INSTRUCTIONS_REQUIRED": "Instructions field is required",
+    "AI_GENERATION_FAILED": "Failed to generate recipe using AI",
+    "AI_RECIPE_CREATED": "Recipe generated automatically using AI"
+  },
+
+  "validation": {
+    "EMAIL_REQUIRED": "Email field is required",
+    "EMAIL_INVALID": "Invalid email address",
+    "PASSWORD_REQUIRED": "Password is required",
+    "PASSWORD_MIN_LENGTH": "Password must contain at least {{min}} characters",
+    "NAME_REQUIRED": "Name is required",
+    "FIELD_REQUIRED": "Field {{field}} is required"
+  },
+
+  "errors": {
+    "INTERNAL_SERVER_ERROR": "An unexpected error occurred. Please try again later",
+    "DATABASE_ERROR": "Database connection error",
+    "SERVICE_UNAVAILABLE": "Service is temporarily unavailable",
+    "INVALID_PAYLOAD": "Invalid payload sent in request",
+    "NOT_ALLOWED": "Operation not allowed",
+    "UNSUPPORTED_LANGUAGE": "Unsupported language"
+  }
+  
 }
