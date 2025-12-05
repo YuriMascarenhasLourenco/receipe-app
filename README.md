@@ -65,7 +65,6 @@ Returns recipes in the structure:
 
 📂 Project Structure
 
-
 src/
 ├── domain
 │   ├── entities
