@@ -1,99 +1,236 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+🍳 Recipe Book AI
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+AI-powered recipe generation with NestJS, Azure AI Foundry, PostgreSQL, TypeORM, i18n, Docker & JWT Authentication
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<div align="center">
+🚀 A multilingual, AI-driven recipe backend built with Clean Architecture principles
 
-## Description
+🔧 Technologies
+Nest.js, Docker, CI pipeline, JWT authentication, LLM integration
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Project setup
+📊 Status
 
-```bash
-$ npm install
-```
 
-## Compile and run the project
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+</div>
+📖 Overview
 
-# production mode
-$ npm run start:prod
-```
+Recipe Book AI is a backend service that generates intelligent recipes from Brazilian and American cuisine using Azure AI Foundry.
+It supports:
 
-## Run tests
+🌍 Internationalization (i18n)
 
-```bash
-# unit tests
-$ npm run test
+🔐 JWT Authentication
 
-# e2e tests
-$ npm run test:e2e
+👤 User CRUD
 
-# test coverage
-$ npm run test:cov
-```
+🍽️ Recipe CRUD
 
-## Deployment
+🤖 AI Recipe Generation
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+🐳 Docker Deployment
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+📘 Swagger Documentation
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+Built with Clean Architecture principles for scalability, maintainability, and long-term reliability.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+✨ Features
+🔥 Core Highlights
 
-## Resources
+🤖 AI-generated recipes (Azure AI LLM)
 
-Check out a few resources that may come in handy when working with NestJS:
+🌍 Multilingual support via Accept-Language
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+🔐 Secure JWT authentication
 
-## Support
+🗄️ PostgreSQL + TypeORM storage
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+🧱 Clean Architecture folder separation
 
-## Stay in touch
+🐳 Full Docker orchestration
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+📝 Swagger API documentation
 
-## License
+🧠 AI Recipe Engine
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Returns recipes in the structure:
+
+{
+  "name": "Brazilian Feijoada",
+  "ingredients": "...",
+  "instructions": "..."
+}
+
+📂 Project Structure
+
+
+src/
+├── domain
+│   ├── entities
+│   ├── interfaces
+│   └── auth
+├── application
+│   ├── use-cases
+│   ├── dtos
+│   └── services
+├── infrastructure
+│   ├── database
+│   ├── repositories
+│   ├── mappers        # ORM <-> Domain conversion
+│   ├── auth
+│   ├── ai
+│   ├── i18n
+│   └── typeorm
+└── presentation
+    ├── controllers
+    ├── filters
+    ├── guards
+    ├── interceptors
+    └── swagger
+
+🛠️ Installation (Local)
+1. Clone the project
+git clone https://github.com/YuriMascarenhasLourenco/receipe-app
+cd receipe-app
+
+2. Install dependencies
+npm install
+
+3. Create .env
+
+DB_HOST 
+DB_NAME
+DB_PASSWORD
+DB_PORT
+DB_USERNAME
+GH_AI_ENDPOINT
+GH_AI_MODEL
+JWT_SECRET
+LANGUAGE
+PORT
+
+
+LANGUAGE=pt
+
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=1d
+
+4. Start PostgreSQL
+docker run --name postgres-recipe \
+  -e POSTGRES_PASSWORD=postgres \
+  -p 5432:5432 \
+  -d postgres
+
+5. Start the server
+npm run start:dev
+
+🐳 Running with Docker
+Start all services
+docker compose up --build -d
+
+URLs
+
+📌 API Base: http://localhost:3000
+📌 Swagger Docs: http://localhost:3000/api
+
+🔐 Authentication Flow
+Register
+POST /auth/register
+{
+  "name": "Yuri",
+  "email": "yuri@example.com",
+  "password": "123456"
+}
+
+Login
+POST /auth/login
+{
+  "email": "yuri@example.com",
+  "password": "123456"
+}
+
+
+Response:
+
+{
+  "access_token": "jwt_here"
+}
+
+Use token in requests
+Authorization: Bearer your_token
+Accept-Language: en
+
+👨‍🍳 AI Recipe Generation
+Generate
+
+POST /recipes/generate
+
+{
+  "name": "Feijoada"
+}
+
+🌍 Internationalization (i18n)
+
+Set via header:
+
+🇧🇷 Portuguese
+
+Accept-Language: pt
+
+
+🇺🇸 English
+
+Accept-Language: en
+
+
+DTO validation, exceptions, and messages automatically adapt.
+
+📘 Swagger Documentation
+
+📌 Access at:
+
+http://localhost:3000/docs
+
+
+Includes:
+
+Auth button
+
+DTO schemas
+
+Route grouping
+
+Language selector
+
+🧰 Scripts
+npm run start
+npm run start:dev
+npm run test
+npm run build
+
+🧠 Technologies Used
+<div align="center">
+node.js, Nest.js, Typescript, JWT, 
+
+
+
+
+
+
+
+
+
+
+</div>
+📄 License
+
+This project is licensed under the MIT License.
+
+⭐ Support the Project
+
+If you enjoy this project, please consider leaving a ⭐ star on GitHub.
+It helps a lot and motivates continued development!
+
+
