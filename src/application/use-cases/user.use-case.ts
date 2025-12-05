@@ -1,13 +1,13 @@
 import { UserDto } from '../dtos/user.dto';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { Inject, Injectable } from '@nestjs/common';
-import { UserRepository } from 'src/domain/repository/user.repository';
+import { UserRepository } from 'src/domain/interfaces/repository/user.repository';
 import { updateUserDto } from '../dtos/update-user.dto';
 @Injectable()
 export class UserUseCase {
   constructor(
     @Inject('UserRepository') private readonly userService: UserRepository,
-  ) {}
+  ) { }
 
   async registerUser(userData: CreateUserDto): Promise<UserDto | null> {
     const savedUser = await this.userService.create(userData);
