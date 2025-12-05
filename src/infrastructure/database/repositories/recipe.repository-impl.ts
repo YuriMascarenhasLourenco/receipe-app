@@ -37,28 +37,44 @@ export class RecipeRepositoryImpl implements RecipeRepository {
     }
   }
   async findById(id: number): Promise<RecipeORMEntity | null> {
-    const recipe = await this.Orm.findOne({ where: { id } });
-    if (!recipe) {
+    try {
+      const recipe = await this.Orm.findOne({ where: { id } });
+      if (!recipe) {
+        throw new HttpException(
+          i18nValidationMessage('validation.recipeNotFound'),
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      return recipe;
+    } catch (error) {
       throw new HttpException(
-        i18nValidationMessage('validation.recipeNotFound'),
-        HttpStatus.NOT_FOUND,
+        i18nValidationMessage('validation.unableToFetchRecipe'),
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
-    return recipe;
   }
   async update(recipe: RecipeORMEntity): Promise<RecipeORMEntity | null> {
-    const existingRecipe = await this.Orm.findOne({ where: { id: recipe.id } });
-    if (!existingRecipe) {
+    try {
+      const existingRecipe = await this.Orm.findOne({
+        where: { id: recipe.id },
+      });
+      if (!existingRecipe) {
+        throw new HttpException(
+          i18nValidationMessage('validation.recipeNotFound'),
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      existingRecipe.title = recipe.title;
+      existingRecipe.instructions = recipe.instructions;
+      existingRecipe.ingredients = recipe.ingredients;
+      existingRecipe.updatedAt = new Date();
+      await this.Orm.save(existingRecipe);
+      return existingRecipe;
+    } catch (error) {
       throw new HttpException(
-        i18nValidationMessage('validation.recipeNotFound'),
-        HttpStatus.NOT_FOUND,
+        i18nValidationMessage('validation.unableToUpdateRecipe'),
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
-    existingRecipe.title = recipe.title;
-    existingRecipe.instructions = recipe.instructions;
-    existingRecipe.ingredients = recipe.ingredients;
-    existingRecipe.updatedAt = new Date();
-    await this.Orm.save(existingRecipe);
-    return existingRecipe;
   }
 }
