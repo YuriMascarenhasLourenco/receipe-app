@@ -1,9 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import { AppModule } from './presentation/modules/app.module';
+import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(
+    new I18nValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
+  app.useGlobalFilters(
+    new I18nValidationExceptionFilter({ detailedErrors: true }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Recipe Book AI API')
@@ -23,11 +33,14 @@ async function bootstrap() {
       
       This documentation includes the following features:
 
-      **✔ JWT Authentication**  
+      ✔ JWT Authentication
       ✔ User registration and profile management  
+      ✔ CI pipelines for automated testing 
       ✔ Recipe creation, updating, deletion, and retrieval
       ✔ Ai-powered recipe generation from prompts (Azure AI Foundry)
-      ✔ Clean Architecture (Domain → Application → Infra → Presentation)**`,
+      ✔ I18N support with language resolution via query parameters and headers
+      ✔ Dockerfile and Docker Compose setup for containerized deployment
+      ✔ Clean Architecture (Domain → Application → Infra → Presentation)`,
     )
     .setVersion('1.0')
     .addTag('Auth', 'Autentication and user manegement')
