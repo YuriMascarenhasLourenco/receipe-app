@@ -65,7 +65,8 @@ Returns recipes in the structure:
 
 📂 Project Structure
 
-src/
+```text
+src
 ├── domain
 │   ├── entities
 │   ├── interfaces
@@ -88,6 +89,7 @@ src/
     ├── guards
     ├── interceptors
     └── swagger
+```
 
 🛠️ Installation (Local)
 1. Clone the project
