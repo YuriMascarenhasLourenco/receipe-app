@@ -4,8 +4,10 @@ import { LoginDto } from 'src/application/dtos/login-user.dto';
 import { LoginUseCase } from 'src/application/use-cases/login.use-case';
 import { ValidateUserUseCase } from 'src/application/use-cases/validate.use-case';
 import { Public } from 'src/infrastructure/auth/decorators/public.decorator';
+import { LanguageHeader } from '../decorators/language-header.decorator';
 
 @Controller('auth')
+@LanguageHeader()
 @ApiTags('Auth')
 export class AuthController {
   constructor(
