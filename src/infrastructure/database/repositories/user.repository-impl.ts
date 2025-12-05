@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserRepository } from 'src/domain/repository/user.repository';
+import { UserRepository } from 'src/domain/interfaces/repository/user.repository';
 import { UserORMEntity } from '../typeorm/user.orm-entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from 'src/application/dtos/create-user.dto';
@@ -16,7 +16,7 @@ export class UserRepositoryImpl implements UserRepository {
   constructor(
     @InjectRepository(UserORMEntity)
     private readonly ormRepo: Repository<UserORMEntity>,
-  ) {}
+  ) { }
   async create(user: CreateUserDto): Promise<UserDto> {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(user.password, salt);

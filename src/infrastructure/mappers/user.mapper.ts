@@ -1,4 +1,4 @@
-import { User } from 'src/domain/entities/user.entity';
+import { User } from 'src/domain/interfaces/entities/user.entity';
 import { UserORMEntity } from '../database/typeorm/user.orm-entity';
 import { RecipeMapper } from './recipe.mapper';
 import { CreateUserDto } from 'src/application/dtos/create-user.dto';

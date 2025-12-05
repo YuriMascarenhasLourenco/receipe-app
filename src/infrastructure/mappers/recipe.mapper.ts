@@ -1,4 +1,4 @@
-import { Recipe } from 'src/domain/entities/recipe.entity';
+import { Recipe } from 'src/domain/interfaces/entities/recipe.entity';
 import { RecipeORMEntity } from '../database/typeorm/recipe.orm-entity';
 import { UserMapper } from './user.mapper';
 import { RecipeDto } from 'src/application/dtos/recipe.dto';

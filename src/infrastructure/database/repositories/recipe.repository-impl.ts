@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { RecipeORMEntity } from '../typeorm/recipe.orm-entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RecipeRepository } from 'src/domain/repository/recipe.repository';
+import { RecipeRepository } from 'src/domain/interfaces/repository/recipe.repository';
 import { i18nValidationMessage } from 'nestjs-i18n';
 import { plainToInstance } from 'class-transformer';
 import { RecipeDto } from 'src/application/dtos/recipe.dto';
@@ -12,7 +12,7 @@ export class RecipeRepositoryImpl implements RecipeRepository {
   constructor(
     @InjectRepository(RecipeORMEntity)
     private readonly Orm: Repository<RecipeORMEntity>,
-  ) {}
+  ) { }
   async create(recipe: RecipeORMEntity): Promise<RecipeORMEntity> {
     return await this.Orm.save(recipe);
   }
